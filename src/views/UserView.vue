@@ -11,9 +11,24 @@ export default {
       userInfo:{}
     }
   },
+  computed:{
+    userId(){
+      return this.$route.params.userId
+    }
+  },
+  watch:{
+    userId: function(val){
+      this.fetchUserInfo(val)
+    }
+  },
   mounted(){
-    axios.get(`https://jsonplaceholder.typicode.com/users/${this.$route.params.userId}`)
-         .then(response => this.userInfo = response.data)
+    this.fetchUserInfo(this.userId)
+  },
+  methods:{
+    fetchUserInfo(id){
+      axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+           .then(response => this.userInfo = response.data)
+    }
   }
 }
 </script>
