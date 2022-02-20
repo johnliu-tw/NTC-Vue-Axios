@@ -1,7 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <li v-for=" i in 10" :key="i">
+      <router-link :to="`/users/${i}`">使用者: {{ i }}</router-link>
+    </li>
   </nav>
   <router-view/>
 </template>
